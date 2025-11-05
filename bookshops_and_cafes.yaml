@@ -1,0 +1,114 @@
+bookshops_and_cafes:
+
+# DEUTSCHLAND
+# BENSHEIM
+
+- name: "Buchhandlung Nuss"
+  lat: 49.699901951198186
+  lng: 8.622301081959852
+  address: "Darmstädter Str. 159, 64625 Bensheim"
+  website: "https://buchhandlung-nuss.buchkatalog.de"
+  icon: "goldIcon"
+
+# DEUTSCHLAND
+# DARMSTADT
+
+- name: "Bessunger Buchladen"
+  lat: 49.85888505316302
+  lng: 8.646698489958522
+  address: "Heidelberger Straße 81B, 64285 Darmstadt"
+  website: "https://www.bessunger-buchladen.de"
+  icon: "goldIcon"
+
+- name: "Café Linie 3"
+  lat: 49.857744222441646
+  lng: 8.650969279601574
+  address: "Ludwigshöhstraße 1A, 64285 Darmstadt"
+  website: "https://www.instagram.com/cafelinie3/"
+  icon: "blackIcon"
+
+- name: "Buchhandlung am Markt"
+  lat: 49.872339225002804
+  lng: 8.656098318854744
+  address: "Marktplatz 10, 64283 Darmstadt"
+  website: "https://www.genialokal.de/buchhandlung/darmstadt/buch-am-markt/"
+  icon: "goldIcon"
+
+- name: "Georg Büchner Buchladen"
+  lat: 49.87772102994678
+  lng: 8.658690941103313
+  address: "Lauteschlägerstraße 18, 64289 Darmstadt"
+  website: "https://www.georg-buechner-buchladen.de"
+  icon: "goldIcon"
+
+- name: "bluebee cafe"
+  lat: 49.87791068888482
+  lng: 8.659559597401397
+  address: "Lauteschlägerstraße 28, 64289 Darmstadt"
+  website: "https://www.bluebee.cafe"
+  icon: "blackIcon"
+
+- name: "Buchhandlung Lesezeichen Darmstadt"
+  lat: 49.88164221897697
+  lng: 8.660268473610591
+  address: "Heinheimer Str. 82, 64289 Darmstadt"
+  website: "https://lesezeichen-darmstadt.buchhandlung.de/"
+  icon: "goldIcon"
+
+- name: "3klang"
+  lat: 49.880685865744425
+  lng: 8.66128312568645
+  address: "Riegerpl. 3, 64289 Darmstadt"
+  website: "https://www.3klang-bar.de"
+  icon: "blackIcon"
+
+- name: "Lichtblick Buchhandlung"
+  lat: 49.71741201358476
+  lng: 8.613721567873357
+  address: "Heidelberger Str. 36, 64673 Zwingenberg, Bergstraße"
+  website: "https://www.schirner.com/buchhandlungen/partner/deutschland/lichtblick-buchhandlung.html"
+  icon: "goldIcon"
+
+# ÖSTERREICH
+# WIEN
+
+- name: "Bücher am Spitz"
+  lat: 48.258105905169415
+  lng: 16.39719493449632
+  address: "Am Spitz 1, 1210 Wien"
+  website: "https://www.buecheramspitz.com"
+  icon: "goldIcon"
+
+- name: "OECHSLI BUCH&PAPIER."
+  lat: 48.2191674405518
+  lng: 16.364775271802834
+  address: "Berggasse 27, 1090 Wien"
+  website: "https://buchundpapier.at"
+  icon: "goldIcon"
+
+- name: "La Mercerie"
+  lat: 48.219135719333096
+  lng: 16.364415855802772
+  address: "Berggasse 25, 1090 Wien, Austria"
+  website: "https://www.diefruehstueckerinnen.at/wien/la-mercerie/"
+  icon: "blackIcon"
+
+## UK
+## BATH
+
+- name: "Topping & Company Booksellers of Bath"
+  lat: 51.38099432728279
+  lng: -2.3583419391477802
+  address: "York St, Bath BA1 1NG, United Kingdom"
+  website: "https://www.toppingbooks.co.uk/"
+  icon: "goldIcon"
+
+## UK
+## ELY
+
+- name: "Topping & Company Booksellers of Ely"
+  lat: 52.39958574811215
+  lng: 0.2633266616030511
+  address: "9 High St, ELY CB7 4LJ, United Kingdom"
+  website: "https://www.toppingbooks.co.uk"
+  icon: "goldIcon"

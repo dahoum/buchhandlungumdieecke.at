@@ -2,6 +2,7 @@
 <html>
 
     <head>
+
         <base target="_top">
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -31,120 +32,8 @@
             }
         </style>
 
-        <script>
-
-          function yamlToJson(yamlStr) {
-            // Remove comments
-            const noComments = yamlStr.replace(/#.*$/gm, '');
-            // Replace YAML-specific syntax (very basic, not robust!)
-            const jsonStr = noComments
-              .replace(/:\s*/g, ': ')
-              .replace(/(\w+):/g, '"$1":')
-              .replace(/'/g, '"');
-            try {
-              return JSON.parse(jsonStr);
-            } catch (e) {
-              console.error("Failed to parse YAML as JSON:", e);
-              return null;
-            }
-          }
-
-          //
-          // Bookshops and Cafés BEGIN
-          //
-          const yaml = `
-
-          - name: "Buchhandlung Nuss"
-            lat: 49.699901951198186
-            lng: 8.622301081959852
-            address: "Darmstädter Str. 159, 64625 Bensheim"
-            website: "https://buchhandlung-nuss.buchkatalog.de"
-            icon: "goldIcon"
-
-          - name: "Bessunger Buchladen"
-            lat: 49.85888505316302
-            lng: 8.646698489958522
-            address: "Heidelberger Straße 81B, 64285 Darmstadt"
-            website: "https://www.bessunger-buchladen.de"
-            icon: "goldIcon"
-
-          - name: "Café Linie 3"
-            lat: 49.857744222441646
-            lng: 8.650969279601574
-            address: "Ludwigshöhstraße 1A, 64285 Darmstadt"
-            website: "https://www.instagram.com/cafelinie3/"
-            icon: "blackIcon"
-
-          - name: "Buchhandlung am Markt"
-            lat: 49.872339225002804
-            lng: 8.656098318854744
-            address: "Marktplatz 10, 64283 Darmstadt"
-            website: "https://www.genialokal.de/buchhandlung/darmstadt/buch-am-markt/"
-            icon: "goldIcon"
-
-          - name: "Georg Büchner Buchladen"
-            lat: 49.87772102994678
-            lng: 8.658690941103313
-            address: "Lauteschlägerstraße 18, 64289 Darmstadt"
-            website: "https://www.georg-buechner-buchladen.de"
-            icon: "goldIcon"
-
-          - name: "bluebee cafe"
-            lat: 49.87791068888482
-            lng: 8.659559597401397
-            address: "Lauteschlägerstraße 28, 64289 Darmstadt"
-            website: "https://www.bluebee.cafe"
-            icon: "blackIcon"
-
-          - name: "Buchhandlung Lesezeichen Darmstadt"
-            lat: 49.88164221897697
-            lng: 8.660268473610591
-            address: "Heinheimer Str. 82, 64289 Darmstadt"
-            website: "https://lesezeichen-darmstadt.buchhandlung.de/"
-            icon: "goldIcon"
-
-          - name: "3klang"
-            lat: 49.880685865744425
-            lng: 8.66128312568645
-            address: "Riegerpl. 3, 64289 Darmstadt"
-            website: "https://www.3klang-bar.de"
-            icon: "blackIcon"
-
-          - name: "Lichtblick Buchhandlung"
-            lat: 49.71741201358476
-            lng: 8.613721567873357
-            address: "Heidelberger Str. 36, 64673 Zwingenberg, Bergstraße"
-            website: "https://www.schirner.com/buchhandlungen/partner/deutschland/lichtblick-buchhandlung.html"
-            icon: "goldIcon"
-
-          - name: "Bücher am Spitz"
-            lat: 48.258105905169415
-            lng: 16.39719493449632
-            address: "Am Spitz 1, 1210 Wien"
-            website: "https://www.buecheramspitz.com"
-            icon: "goldIcon"
-
-          - name: "Topping & Company Booksellers of Bath"
-            lat: 51.38099432728279
-            lng: -2.3583419391477802
-            address: "York St, Bath BA1 1NG, United Kingdom"
-            website: "https://www.toppingbooks.co.uk/"
-            icon: "goldIcon"
-
-          - name: "Topping & Company Booksellers of Ely"
-            lat: 52.39958574811215
-            lng: 0.2633266616030511
-            address: "9 High St, ELY CB7 4LJ, United Kingdom"
-            website: "https://www.toppingbooks.co.uk"
-            icon: "goldIcon"
-
-          #
-          # Bookshops and Cafés BEGIN
-          #
-          `;
-
-        </script>
-
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/js-yaml/4.1.0/js-yaml.min.js"></script>
+        
         <!--
         Thanks to https://github.com/pointhi/leaflet-color-markers for the beautiful markers.
         -->
@@ -199,17 +88,19 @@
             shadowSize: [41, 41]
             });
           
-          // Create the Markers
-
-          bookshops_and_cafes.forEach(store => {
-            
-            const icon = store.icon === 'goldIcon' ? goldIcon : blackIcon;
-      
-            L.marker([store.lat, store.lng], { icon: icon })
-             .addTo(map)
-             .bindPopup(`<b>${store.name}</b><br>${store.address}<br><a href="${store.website}">www</a>`);
-
-          });
+            // Load and parse the Bookshops and the Cafés
+            fetch('bookshops_and_cafes.yaml')
+                .then(response => response.text())
+                .then(yamlText => {
+                    const bookshops_and_cafes = jsyaml.load(yamlText).bookshops_and_cafes;
+                    bookshops_and_cafes.forEach(marker => {
+                        const icon = marker.icon === 'goldIcon' ? goldIcon : blackIcon;
+                        L.marker([marker.lat, marker.lng], { icon: icon })
+                            .addTo(map)
+                            .bindPopup(`<b>${marker.name}</b><br>${marker.address}<br><a href="${marker.website}">www</a>`);
+                    });
+                })
+                .catch(err => console.error("Error loading YAML:", err));
 
         </script>
 
