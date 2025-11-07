@@ -118,6 +118,14 @@ bookshops_and_cafes:
 ## UK
 ## STOCKPORT
 
+- name: Simply Books
+  lat: 53.35741447192685
+  lng: -2.166691032728895
+  address: Simply Books, 228 Moss Ln, Stockport SK7 1BD
+  www: https://www.simplybooks.co.uk
+  mail: hello@simplybooks.co.uk
+  icon: "goldIcon"
+
 - name: "Talisman Books"
   lat: 53.364863982487414
   lng: -2.075694320251032
