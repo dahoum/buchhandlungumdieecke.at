@@ -30,6 +30,27 @@
                 width: 100vw;
                 height: 100vh;
             }
+            #location-warning
+            {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.8);
+                color: white;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+                z-index: 1000;
+            }
+            #location-warning button
+            {
+                margin-top: 20px;
+                padding: 10px 20px;
+                font-size: 16px;
+            }
         </style>
 
         <script src="https://unpkg.com/js-yaml@4/dist/js-yaml.min.js"></script>
@@ -52,6 +73,12 @@
     </head>
 
     <body>
+
+        <!-- Keep this div right after <body> -->
+        <div id="location-warning">
+            <p>This map requires access to your location to show nearby bookshops and cafés.</p>
+            <button onclick="document.getElementById('location-warning').style.display='none'">OK</button>
+        </div>
 
         <div id="map"></div>
 
