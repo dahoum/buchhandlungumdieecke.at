@@ -179,7 +179,7 @@
                         const icon = marker.icon === 'goldIcon' ? goldIcon : blackIcon;
                         L.marker([marker.lat, marker.lng], { icon: icon })
                             .addTo(map)
-                            .bindPopup(`<b>${marker.name}</b><br>${marker.address}${marker.www ? `<br><a href="${marker.www}">Website &#8599</a>` : ''}${marker.mail ? `<br><a href="mailto:${marker.mail}">@</a>` : ''}`);
+                            .bindPopup(`<b>${marker.name}</b><br>${marker.address}${marker.www ? `<br><a href="${marker.www}" target="_blank" rel="noopener noreferrer">&#8599</a>` : ''}${marker.mail ? `<br><a href="mailto:${marker.mail}">@</a>` : ''}`);
                     });
                 })
                 .catch(err => console.error("Error loading YAML:", err));
