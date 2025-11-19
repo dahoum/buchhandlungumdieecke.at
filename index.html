@@ -142,12 +142,24 @@
 
                 map.locate({setView: true, maxZoom: 17});
 
+                map.on('locationerror', function(e)
+                {
+                    const goldMarkers = bookshops_and_cafes.filter(marker => marker.icon === 'goldIcon');
+           
+                    if (goldMarkers.length > 0)
+                    {
+                        const randomMarker = goldMarkers[Math.floor(Math.random() * goldMarkers.length)];
+                        map.setView([randomMarker.lat, randomMarker.lng], 15);
+                    }
+                });
+
             }
 
             document.getElementById('location-warning').querySelector('button').onclick = function()
             {
+
                 document.getElementById('location-warning').style.display = 'none';
-                requestLocation();
+
             };
 
             // Bookshop
@@ -181,6 +193,8 @@
                             .addTo(map)
                             .bindPopup(`<b>${marker.name}</b><br>${marker.address}${marker.www ? `<br><a href="${marker.www}" target="_blank" rel="noopener noreferrer">&#8594</a>` : ''}${marker.mail ? `<br><a href="mailto:${marker.mail}">@</a>` : ''}`);
                     });
+
+                    requestLocation(); // Call after all markers are loaded, so that we can choose a random marker in case location is not granted.
                 })
                 .catch(err => console.error("Error loading YAML:", err));
 
