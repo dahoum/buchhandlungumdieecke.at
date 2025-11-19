@@ -144,6 +144,31 @@
 
                 map.locate({setView: true, maxZoom: 17});
 
+                map.on('locationfound', function(e)
+                {
+                    // When location is found, find the nearest golden marker
+                    const goldMarkers = bookshops_and_cafes.filter(marker => marker.icon === 'goldIcon');
+                 
+                    if (goldMarkers.length > 0)
+                    {
+                        // Calculate distances to all golden markers
+                        const distances = goldMarkers.map(marker => {
+                            return {
+                                marker: marker,
+                                distance: e.latlng.distanceTo([marker.lat, marker.lng])
+                            };
+                        });         
+                     
+                        // Sort by distance and find the closest
+                        distances.sort((a, b) => a.distance - b.distance);
+                        const closestMarker = distances[0].marker;          
+                        // Calculate required zoom level to show both location and closest marker
+                        const bounds = L.latLngBounds([e.latlng, [closestMarker.lat, closestMarker.lng]]);
+                        map.fitBounds(bounds, { padding: [50, 50], maxZoom: 17 });
+                 }
+             });
+
+
                 map.on('locationerror', function(e)
                 {
                     const goldMarkers = bookshops_and_cafes.filter(marker => marker.icon === 'goldIcon');
