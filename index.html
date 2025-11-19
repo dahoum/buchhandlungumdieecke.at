@@ -113,13 +113,13 @@
 
         <!-- Keep this div right after <body> -->
         <div id="location-warning">
-            <p><b>Bookshops Around the Corner</b></p>
-            <p>This website will ask you for access to your location in order to position the map so, that you can see the nearest bookshop.</p>
-            <p>Your location will be only used in your broser to position your map. It will not be sent to the server. No cookies will be used.</p>
-            <p>If you do not allow access to your location, the map will be centered on a random Independent Bookseller.</p>
+            <p><b>Bookshop Around the Corner</b></p>
+            <p>This website will ask you for access your location in order to position the map so, that you can see the nearest bookshop.</p>
+            <p>Your location will be only used in your broser to position your map. It will not be sent to the server. No cookies will be set.</p>
+            <p>If you do not allow access to your location, the map will be centered on a random bookshop.</p>
             <button onclick="document.getElementById('location-warning').style.display='none'">I UNDERSTAND</button>
             <p>&nbsp;</p>
-            <p>To suggest bookshops and cafés, send a mail to <a href="mailto:map@ijverlag.de">map@ijverlag.de</a>.</p>
+            <p>Suggest bookshops and cafés. Write to <a href="mailto:map@ijverlag.de">map@ijverlag.de</a>.</p>
         </div>
 
         <div id="map"></div>
@@ -142,7 +142,7 @@
             function requestLocation()
             {
 
-                map.locate({setView: true});
+                map.locate({setView: false});
 
                 map.on('locationfound', function(e)
                 {
@@ -166,8 +166,8 @@
                         // Calculate required zoom level to show the closest marker while keeping center
                         const bounds = L.latLngBounds([e.latlng, [closestMarker.lat, closestMarker.lng]]);
                         const zoom = map.getBoundsZoom(bounds, { padding: [50, 50] });
-                        // Keep center on user's location, only adjust zoom
-                        map.setZoom(zoom); // Use calculated zoom without max constraint
+                        
+                        map.setView(e.latlng, zoom);
                  }
              });
 
