@@ -165,9 +165,10 @@
 
                         // Calculate required zoom level to show the closest marker while keeping center
                         const bounds = L.latLngBounds([e.latlng, [closestMarker.lat, closestMarker.lng]]);
-                        const zoom = map.getBoundsZoom(bounds, { padding: [50, 50] });
-                        
-                        map.setView(e.latlng, zoom);
+
+                        map.fitBounds(bounds, { padding: [50, 50],
+                                                maxZoom: 17  // Prevent zooming in too far
+                                              });
                  }
              });
 
