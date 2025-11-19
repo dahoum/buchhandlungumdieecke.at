@@ -174,7 +174,7 @@
             fetch('bookshops_and_cafes.yaml')
                 .then(response => response.text())
                 .then(yamlText => {
-                    const bookshops_and_cafes = jsyaml.load(yamlText).bookshops_and_cafes;
+                    bookshops_and_cafes = jsyaml.load(yamlText).bookshops_and_cafes;
                     bookshops_and_cafes.forEach(marker => {
                         const icon = marker.icon === 'goldIcon' ? goldIcon : blackIcon;
                         L.marker([marker.lat, marker.lng], { icon: icon })
